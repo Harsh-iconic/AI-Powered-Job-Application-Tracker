@@ -8,7 +8,7 @@ A MERN-stack job application tracker with AI-assisted resume feedback, resume-to
 - PDF resume upload and text extraction.
 - AI resume feedback and job-description matching.
 - Role-specific interview question generation, saved practice sessions, and analysis history.
-- Account security settings for changing passwords.
+- Account settings for profile updates and password changes.
 - Responsive React dashboard with charts.
 
 ## Requirements
