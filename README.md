@@ -4,7 +4,7 @@ A MERN-stack job application tracker with AI-assisted resume feedback, resume-to
 
 ## Features
 - JWT authentication with httpOnly cookies and protected user data.
-- Job application CRUD, search, status filtering, and dashboard analytics.
+- Job application CRUD, search, status filtering, dashboard analytics, and CSV export.
 - PDF resume upload and text extraction.
 - AI resume feedback and job-description matching.
 - Role-specific interview question generation, saved practice sessions, and analysis history.
@@ -34,6 +34,7 @@ Base path `/api/v1`.
 | GET/PUT/DELETE | `/jobs/:id` | Read/update/delete application |
 | PATCH | `/jobs/:id/status` | Move application stage |
 | GET | `/jobs/stats` | Dashboard statistics |
+| GET | `/jobs/export/csv` | Export your applications to CSV |
 | POST | `/resumes/upload` | Upload PDF resume |
 | GET | `/resumes` | List resumes |
 | DELETE | `/resumes/:id` | Delete resume |
