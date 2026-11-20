@@ -50,6 +50,10 @@ Changing a password increments the user's session version and invalidates previo
 
 The maximum page size is 50. Supported statuses: Wishlist, Applied, Assessment, Interview, Offer, Rejected.
 
+### Follow-up reminders
+
+`GET /jobs/follow-ups` returns the next scheduled follow-up dates for the authenticated user.
+
 ### Update
 `PUT /jobs/:id`
 
