@@ -1,6 +1,5 @@
-const Job=require('../models/Job'),asyncHandler=require('../utils/asyncHandler');
+const Job=require('../models/Job'),asyncHandler=require('../utils/asyncHandler'),escapeRegex=require('../utils/escapeRegex');
 const statuses=['Wishlist','Applied','Assessment','Interview','Offer','Rejected'];
-const escapeRegex=value=>String(value).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 exports.create=asyncHandler(async(req,res)=>{const job=await Job.create({...req.body,user:req.user._id});res.status(201).json({success:true,job});});
 exports.list=asyncHandler(async(req,res)=>{const page=Math.max(1,+req.query.page||1),limit=Math.min(50,Math.max(1,+req.query.limit||10)),filter={user:req.user._id};if(statuses.includes(req.query.status))filter.status=req.query.status;if(req.query.search){const search=escapeRegex(String(req.query.search).slice(0,80));filter.$or=['company','position','location'].map(k=>({[k]:{$regex:search,$options:'i'}}));}const[jobs,total]=await Promise.all([Job.find(filter).sort({createdAt:-1}).skip((page-1)*limit).limit(limit),Job.countDocuments(filter)]);res.json({success:true,jobs,pagination:{page,limit,total,pages:Math.ceil(total/limit)}});});
 exports.get=asyncHandler(async(req,res)=>{const job=await Job.findOne({_id:req.params.id,user:req.user._id});if(!job)return res.status(404).json({success:false,message:'Job not found'});res.json({success:true,job});});
