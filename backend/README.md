@@ -6,4 +6,4 @@ All private routes require an httpOnly JWT cookie (or Bearer token). Resume uplo
 
 API prefix: `/api/v1`. Health: `/api/v1/health` (reports MongoDB connectivity).
 
-AI endpoints are rate-limited and validate referenced MongoDB IDs. Generated interview sessions can be listed at `GET /api/v1/ai/interviews` and deleted at `DELETE /api/v1/ai/interviews/:id`. Job list filters support `page`, `limit` (maximum 50), `status`, and `search`.
+AI endpoints are rate-limited and validate referenced MongoDB IDs. Generated interview sessions can be listed at `GET /api/v1/ai/interviews` and deleted at `DELETE /api/v1/ai/interviews/:id`. Job list filters support `page`, `limit` (maximum 50), `status`, `employmentType`, and `search`.
