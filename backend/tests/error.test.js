@@ -6,3 +6,5 @@ test('hides internal error messages in production',()=>{const previous=process.e
 
 test('maps oversized resume uploads to payload too large',()=>{const res=response();const error=Object.assign(new Error('File too large'),{name:'MulterError',code:'LIMIT_FILE_SIZE'});errorHandler(error,{},res,()=>{});assert.equal(res.statusCode,413);});
 test('maps unsupported resume file errors to bad request',()=>{const res=response();const error=Object.assign(new Error('Only PDF resume files are allowed'),{statusCode:400});errorHandler(error,{},res,()=>{});assert.equal(res.statusCode,400);});
+
+test('returns a stable message for malformed JSON bodies',()=>{const res=response();errorHandler(Object.assign(new Error('parser internals'),{type:'entity.parse.failed'}),{},res,()=>{});assert.equal(res.statusCode,400);assert.equal(res.payload.message,'Request body contains invalid JSON');});
