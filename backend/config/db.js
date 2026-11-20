@@ -1,2 +1,1 @@
-const mongoose=require('mongoose');
-module.exports=async function connectDB(){if(!process.env.MONGO_URI)throw new Error('MONGO_URI is required');await mongoose.connect(process.env.MONGO_URI);console.log('MongoDB connected');};
+const mongoose=require('mongoose');module.exports=async function connectDB(){if(!process.env.MONGO_URI)throw new Error('MONGO_URI is required');await mongoose.connect(process.env.MONGO_URI,{serverSelectionTimeoutMS:10000,connectTimeoutMS:10000});console.log('MongoDB connected');};
