@@ -1,0 +1,1 @@
+const r=require('express').Router(),c=require('../controllers/jobController'),{protect}=require('../middleware/auth');r.use(protect);r.get('/stats',c.stats);r.route('/').get(c.list).post(c.create);r.patch('/:id/status',c.status);r.route('/:id').get(c.get).put(c.update).delete(c.remove);module.exports=r;

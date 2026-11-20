@@ -1,0 +1,1 @@
+require('dotenv').config();const app=require('./app'),connectDB=require('./config/db');connectDB().then(()=>app.listen(process.env.PORT||5000,()=>console.log('CareerPilot API listening'))).catch(e=>{console.error(e.message);process.exit(1);});
