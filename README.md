@@ -61,5 +61,11 @@ Private endpoints require the httpOnly session cookie. The API also accepts a Be
 ## Deployment
 Deploy `backend` as a Node service and `frontend` as a static Vite site. Set `CLIENT_URL` to the deployed frontend origin and `VITE_API_URL` to the deployed API `/api/v1` URL. Use MongoDB Atlas and configure Gemini/Cloudinary environment variables in the hosting dashboard.
 
+## Project maintenance
+
+- [Contributing guide](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
+- [Changelog](CHANGELOG.md)
+
 ## License
 MIT
