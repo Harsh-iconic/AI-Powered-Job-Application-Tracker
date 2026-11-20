@@ -1,0 +1,5 @@
+const test=require('node:test');const assert=require('node:assert/strict');const recordStatusChange=require('../utils/statusHistory');
+test('records a new stage with its timestamp',()=>{const job={status:'Applied',statusHistory:[]};const changedAt=new Date('2026-11-20T10:00:00.000Z');assert.equal(recordStatusChange(job,'Interview',changedAt),true);assert.equal(job.status,'Interview');assert.deepEqual(job.statusHistory,[{status:'Interview',changedAt}]);});
+test('does not duplicate an unchanged stage',()=>{const job={status:'Applied',statusHistory:[]};assert.equal(recordStatusChange(job,'Applied'),false);assert.equal(job.statusHistory.length,0);});
+test('initializes missing history arrays safely',()=>{const job={status:'Wishlist'};assert.equal(recordStatusChange(job,'Applied'),true);assert.equal(job.statusHistory.length,1);});
+test('ignores missing jobs and empty statuses',()=>{assert.equal(recordStatusChange(null,'Applied'),false);assert.equal(recordStatusChange({status:'Applied',statusHistory:[]},''),false);});
