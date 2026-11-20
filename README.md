@@ -15,7 +15,7 @@ Node.js 18+, MongoDB, and a Gemini API key for AI features. Cloudinary is option
 
 ## Run locally
 1. Copy `backend/.env.example` to `backend/.env` and configure `MONGO_URI`, a long random `JWT_SECRET`, and `CLIENT_URL`.
-2. Add `GEMINI_API_KEY` to enable AI endpoints. Configure Cloudinary credentials for remote PDF storage.
+2. Add `GEMINI_API_KEY` to enable AI endpoints. The default model is `gemini-3.8-flash`; override with `GEMINI_MODEL` if needed. Configure Cloudinary credentials for remote PDF storage.
 3. Install dependencies: `npm install`, `npm install --prefix backend`, and `npm install --prefix frontend`.
 4. Start both apps with `npm run dev` from the repository root.
 5. Frontend: http://localhost:5173 · API health: http://localhost:5000/api/v1/health
@@ -48,7 +48,7 @@ Private endpoints require the httpOnly session cookie. The API also accepts a Be
 - Resume uploads are restricted to PDF and 5 MB. Treat uploaded documents as sensitive personal data.
 - AI scores are approximate guidance, not official ATS scores or hiring predictions.
 - Configure HTTPS and production cookie/CORS settings when deploying frontend and API on separate domains.
-- Add a production-grade file malware scanning and retention policy before accepting public uploads at scale.
+- Add production-grade file malware scanning and a retention policy before accepting public uploads at scale.
 
 ## Deployment
 Deploy `backend` as a Node service and `frontend` as a static Vite site. Set `CLIENT_URL` to the deployed frontend origin and `VITE_API_URL` to the deployed API `/api/v1` URL. Use MongoDB Atlas and configure Gemini/Cloudinary environment variables in the hosting dashboard.
