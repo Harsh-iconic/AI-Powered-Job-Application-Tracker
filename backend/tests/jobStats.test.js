@@ -1,0 +1,5 @@
+const test=require('node:test');const assert=require('node:assert/strict');const buildJobStats=require('../utils/jobStats');
+test('builds zeroed metrics when no applications exist',()=>{const stats=buildJobStats([],0);assert.equal(stats.total,0);assert.equal(stats.offerRate,0);assert.equal(stats.interviews,0);assert.equal(stats.upcomingInterviews,0);});
+test('calculates offer rate without counting wishlist entries',()=>{const stats=buildJobStats([{_id:'Wishlist',count:5},{_id:'Applied',count:3},{_id:'Rejected',count:1},{_id:'Offer',count:2}],4);assert.equal(stats.total,11);assert.equal(stats.offerRate,33);assert.equal(stats.offers,2);assert.equal(stats.upcomingInterviews,4);});
+test('ignores unknown statuses and normalizes negative counts',()=>{const stats=buildJobStats([{_id:'Unknown',count:8},{_id:'Applied',count:-3}],-2);assert.equal(stats.total,0);assert.equal(stats.upcomingInterviews,0);});
+test('keeps all supported statuses in the result',()=>{const stats=buildJobStats([]);assert.deepEqual(Object.keys(stats.byStatus),['Wishlist','Applied','Assessment','Interview','Offer','Rejected']);});
