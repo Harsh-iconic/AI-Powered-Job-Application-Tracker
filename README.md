@@ -1,5 +1,7 @@
 # CareerPilot AI 🚀
 
+![Validate CareerPilot](https://github.com/Harsh-iconic/AI-Powered-Job-Application-Tracker/actions/workflows/validate.yml/badge.svg)
+
 A MERN-stack job application tracker with AI-assisted resume feedback, resume-to-job matching, and interview question generation. Built with React, Express, MongoDB, and Google's Gemini API.
 
 ## Features
