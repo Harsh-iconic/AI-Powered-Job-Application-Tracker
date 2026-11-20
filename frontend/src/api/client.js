@@ -1,1 +1,4 @@
-import axios from'axios';const api=axios.create({baseURL:import.meta.env.VITE_API_URL||'http://localhost:5000/api/v1',withCredentials:true});api.interceptors.response.use(r=>r,e=>Promise.reject(e.response?.data||{message:e.message}));export default api;
+import axios from'axios';
+const api=axios.create({baseURL:import.meta.env.VITE_API_URL||'http://localhost:5000/api/v1',withCredentials:true,timeout:20000,headers:{Accept:'application/json'}});
+api.interceptors.response.use(response=>response,error=>{const payload=error.response?.data;const normalized=payload&&typeof payload==='object'?payload:{message:error.code==='ECONNABORTED'?'The server took too long to respond. Please try again.':error.response?'Request failed. Please try again.':'Unable to connect to the server. Check your connection.'};return Promise.reject(normalized);});
+export default api;
