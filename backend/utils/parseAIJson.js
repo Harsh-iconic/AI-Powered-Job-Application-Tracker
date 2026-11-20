@@ -1,0 +1,1 @@
+module.exports=function parseAIJson(raw){if(typeof raw!=='string'||!raw.trim())throw new Error('AI returned an empty response. Please retry.');try{const parsed=JSON.parse(raw);if(!parsed||typeof parsed!=='object'||Array.isArray(parsed))throw new Error('Expected a JSON object');return parsed;}catch{throw new Error('AI returned invalid JSON. Please retry.');}};
