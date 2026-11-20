@@ -14,3 +14,5 @@ test('uses a safe fallback for empty filenames',()=>{
 test('limits stored filenames to 255 characters',()=>{
   assert.equal(sanitizeFilename('a'.repeat(300)+'.pdf').length,255);
 });
+
+test('removes control characters from filenames',()=>{assert.equal(sanitizeFilename('resume\u0000\u0007.pdf'),'resume.pdf');});
