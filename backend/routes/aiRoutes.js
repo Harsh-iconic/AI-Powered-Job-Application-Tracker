@@ -1,0 +1,1 @@
+const r=require('express').Router(),c=require('../controllers/aiController'),{protect}=require('../middleware/auth');r.use(protect);r.post('/resume/analyze',c.analyze);r.post('/job/match',c.match);r.post('/interview/generate',c.interview);r.get('/history',c.history);module.exports=r;

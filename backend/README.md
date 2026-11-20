@@ -1,0 +1,7 @@
+# CareerPilot API
+
+Express/MongoDB API for CareerPilot AI. Copy `.env.example` to `.env`, configure MongoDB and secrets, then run `npm install && npm run dev`.
+
+All private routes require an httpOnly JWT cookie (or Bearer token). Resume uploads accept PDF files up to 5 MB. Gemini features require `GEMINI_API_KEY`; optional Cloudinary credentials enable remote resume storage.
+
+API prefix: `/api/v1`. Health: `/api/v1/health`.
