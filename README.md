@@ -43,6 +43,7 @@ Base path `/api/v1`.
 | POST | `/ai/interview/generate` | Generate practice questions |
 | GET | `/ai/history` | Resume and job-match analysis history |
 | GET | `/ai/interviews` | Saved interview practice sessions |
+| PATCH | `/ai/interviews/:id` | Schedule a practice session or update its notes |
 | DELETE | `/ai/interviews/:id` | Delete a saved practice session |
 
 Private endpoints require the httpOnly session cookie. The API also accepts a Bearer token for API clients.
