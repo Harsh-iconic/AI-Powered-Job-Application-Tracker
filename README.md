@@ -30,6 +30,7 @@ Base path `/api/v1`.
 | POST | `/auth/login` | Sign in |
 | GET | `/auth/me` | Current user |
 | POST | `/auth/logout` | Clear session |
+| PUT | `/auth/password` | Change password and revoke older sessions |
 | GET/POST | `/jobs` | List/create applications |
 | GET/PUT/DELETE | `/jobs/:id` | Read/update/delete application |
 | PATCH | `/jobs/:id/status` | Move application stage and record its history |
