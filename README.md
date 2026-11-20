@@ -71,6 +71,7 @@ Deploy `backend` as a Node service and `frontend` as a static Vite site. Set `CL
 - [Deployment guide](docs/DEPLOYMENT.md)
 - [Contributing guide](CONTRIBUTING.md)
 - [Security policy](SECURITY.md)
+- [Testing guide](docs/TESTING.md)
 - [Changelog](CHANGELOG.md)
 
 ## License
