@@ -1,0 +1,1 @@
+module.exports=function startOfUtcDay(now=new Date()){const date=new Date(now);date.setUTCHours(0,0,0,0);return date;};
