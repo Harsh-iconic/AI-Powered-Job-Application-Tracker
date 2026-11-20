@@ -1,0 +1,1 @@
+module.exports=function recordStatusChange(job,nextStatus,changedAt=new Date()){if(!job||!nextStatus||job.status===nextStatus)return false;job.statusHistory=job.statusHistory||[];job.status=nextStatus;job.statusHistory.push({status:nextStatus,changedAt});return true;};
