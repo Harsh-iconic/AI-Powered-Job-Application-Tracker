@@ -1,0 +1,1 @@
+import{Navigate,Outlet}from'react-router-dom';import{useAuth}from'../state/AuthContext';export default function ProtectedRoute(){const{user,loading}=useAuth();if(loading)return <div className="min-h-screen grid place-items-center muted">Loading CareerPilot…</div>;return user?<Outlet/>:<Navigate to="/login" replace/>;}
