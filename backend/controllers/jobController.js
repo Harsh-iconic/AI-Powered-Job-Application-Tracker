@@ -11,3 +11,5 @@ exports.stats=asyncHandler(async(req,res)=>{const[rows,upcomingInterviews]=await
 exports.exportCSV=asyncHandler(async(req,res)=>{const jobs=await Job.find({user:req.user._id}).sort({createdAt:-1}).lean();const fields=['company','position','status','location','employmentType','salary','appliedAt','interviewAt','followUpAt','jobUrl','contactName','contactEmail','notes'];const rows=[fields,...jobs.map(job=>fields.map(field=>job[field]))];res.setHeader('Content-Type','text/csv; charset=utf-8');res.setHeader('Content-Disposition','attachment; filename="careerpilot-applications.csv"');res.status(200).send('\uFEFF'+toCsv(rows));});
 
 exports.upcoming=asyncHandler(async(req,res)=>{const jobs=await Job.find({user:req.user._id,interviewAt:{$gte:new Date()}}).sort({interviewAt:1}).limit(10).select('company position interviewAt status location');res.json({success:true,jobs});});
+
+exports.followUps=asyncHandler(async(req,res)=>{const jobs=await Job.find({user:req.user._id,followUpAt:{$gte:new Date()}}).sort({followUpAt:1}).limit(10).select('company position followUpAt status');res.json({success:true,jobs});});
