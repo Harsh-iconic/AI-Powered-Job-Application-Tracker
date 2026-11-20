@@ -4,3 +4,4 @@ test('escapes embedded double quotes',()=>{assert.equal(toCsv([['Note'],['Said "
 test('prefixes formula-like cells to prevent spreadsheet injection',()=>{const output=toCsv([['=HYPERLINK("https://bad.example")']]);assert.equal(output.startsWith('"\'=HYPERLINK'),true);});
 test('preserves date values as ISO strings',()=>{assert.equal(toCsv([[new Date('2026-01-02T00:00:00.000Z')]]),'"2026-01-02T00:00:00.000Z"');});
 test('handles empty values',()=>{assert.equal(toCsv([[null,undefined,'']]),'"","",""');});
+test('covers plus, minus, and at-sign spreadsheet formulas',()=>{for(const value of ['+SUM(1,2)','-1+2','@SUM(A1:A2)','   =1+1'])assert.equal(toCsv([[value]]).startsWith('"\''),true);});
