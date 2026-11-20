@@ -17,7 +17,8 @@ Node.js 18+, MongoDB, and a Gemini API key for AI features. Cloudinary is option
 1. Copy `backend/.env.example` to `backend/.env` and configure `MONGO_URI`, a long random `JWT_SECRET`, and `CLIENT_URL`.
 2. Add `GEMINI_API_KEY` to enable AI endpoints. The default model is `gemini-3.8-flash`; override with `GEMINI_MODEL` if needed. Configure Cloudinary credentials for remote PDF storage.
 3. Install dependencies: `npm install`, `npm install --prefix backend`, and `npm install --prefix frontend`.
-4. Run backend utility tests with `npm test --prefix backend`.\n5. Start both apps with `npm run dev` from the repository root.
+4. Run backend utility tests with `npm test --prefix backend`.
+5. Start both apps with `npm run dev` from the repository root.
 6. Frontend: http://localhost:5173 · API health: http://localhost:5000/api/v1/health
 
 ## API overview
@@ -39,7 +40,8 @@ Base path `/api/v1`.
 | POST | `/ai/resume/analyze` | AI resume feedback |
 | POST | `/ai/job/match` | Compare resume to saved job |
 | POST | `/ai/interview/generate` | Generate practice questions |
-| GET | `/ai/history` | Resume and job-match analysis history |\n| GET | `/ai/interviews` | Saved interview practice sessions |
+| GET | `/ai/history` | Resume and job-match analysis history |
+| GET | `/ai/interviews` | Saved interview practice sessions |
 | DELETE | `/ai/interviews/:id` | Delete a saved practice session |
 
 Private endpoints require the httpOnly session cookie. The API also accepts a Bearer token for API clients.
