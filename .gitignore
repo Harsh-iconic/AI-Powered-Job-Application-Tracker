@@ -4,3 +4,9 @@ node_modules
 !.env.example
 dist
 coverage
+
+# Local runtime artifacts
+*.log
+npm-debug.log*
+.DS_Store
+backend/uploads/
