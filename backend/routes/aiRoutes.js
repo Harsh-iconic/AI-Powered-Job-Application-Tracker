@@ -4,4 +4,4 @@ const jobId=body('jobId').isMongoId().withMessage('A valid job ID is required');
 r.post('/resume/analyze',resumeId,validate,c.analyze);
 r.post('/job/match',[resumeId,jobId],validate,c.match);
 r.post('/interview/generate',jobId,validate,c.interview);
-r.get('/history',c.history);r.get('/interviews',c.interviewHistory);module.exports=r;
+r.get('/history',c.history);r.get('/interviews',c.interviewHistory);r.delete('/interviews/:id',require('express-validator').param('id').isMongoId(),validate,c.deleteInterview);module.exports=r;
