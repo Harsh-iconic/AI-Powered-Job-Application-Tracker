@@ -1,1 +1,10 @@
-const r=require('express').Router(),c=require('../controllers/jobController'),{protect}=require('../middleware/auth');r.use(protect);r.get('/stats',c.stats);r.route('/').get(c.list).post(c.create);r.patch('/:id/status',c.status);r.route('/:id').get(c.get).put(c.update).delete(c.remove);module.exports=r;
+const r=require('express').Router(),c=require('../controllers/jobController'),{protect}=require('../middleware/auth'),{body,param}=require('express-validator'),validate=require('../middleware/validate');
+const statuses=['Wishlist','Applied','Assessment','Interview','Offer','Rejected'];
+const createRules=[body('company').trim().isString().notEmpty().withMessage('Company is required').isLength({max:120}),body('position').trim().isString().notEmpty().withMessage('Position is required').isLength({max:120}),body('status').optional().isIn(statuses).withMessage('Invalid status'),body('description').optional().isString().isLength({max:20000}),body('contactEmail').optional({checkFalsy:true}).isEmail().withMessage('Enter a valid contact email')];
+const updateRules=[param('id').isMongoId().withMessage('Invalid application ID'),body('company').optional().trim().isString().notEmpty().isLength({max:120}),body('position').optional().trim().isString().notEmpty().isLength({max:120}),body('status').optional().isIn(statuses).withMessage('Invalid status'),body('description').optional().isString().isLength({max:20000}),body('contactEmail').optional({checkFalsy:true}).isEmail().withMessage('Enter a valid contact email')];
+r.use(protect);
+r.get('/stats',c.stats);
+r.route('/').get(c.list).post(createRules,validate,c.create);
+r.patch('/:id/status',[param('id').isMongoId().withMessage('Invalid application ID'),body('status').isIn(statuses).withMessage('Invalid status')],validate,c.status);
+r.route('/:id').get(param('id').isMongoId(),validate,c.get).put(updateRules,validate,c.update).delete(param('id').isMongoId(),validate,c.remove);
+module.exports=r;
