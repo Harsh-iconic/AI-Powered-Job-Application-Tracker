@@ -62,7 +62,7 @@ Only supported application fields are accepted. Use `PATCH /jobs/:id/status` to 
 ### Export
 `GET /jobs/export/csv`
 
-Returns the authenticated user's applications as a CSV attachment. Spreadsheet formula-like values are escaped.
+Returns the authenticated user's applications as a CSV attachment. Supports the same `status`, `employmentType`, and `search` filters as the list endpoint. Spreadsheet formula-like values are escaped.
 
 ## Resumes and AI
 
