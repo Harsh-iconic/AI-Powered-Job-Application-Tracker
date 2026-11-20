@@ -65,6 +65,7 @@ Deploy `backend` as a Node service and `frontend` as a static Vite site. Set `CL
 
 ## Project maintenance
 
+- [Architecture overview](docs/ARCHITECTURE.md)
 - [API reference](docs/API.md)
 - [Deployment guide](docs/DEPLOYMENT.md)
 - [Contributing guide](CONTRIBUTING.md)
