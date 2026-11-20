@@ -19,7 +19,7 @@ Node.js 18+, MongoDB, and a Gemini API key for AI features. Cloudinary is option
 ## Run locally
 1. Copy `backend/.env.example` to `backend/.env` and configure `MONGO_URI`, a long random `JWT_SECRET`, and `CLIENT_URL`.
 2. Add `GEMINI_API_KEY` to enable AI endpoints. The default model is `gemini-3.8-flash`; override with `GEMINI_MODEL` if needed. Configure Cloudinary credentials for remote PDF storage.
-3. Install dependencies: `npm install`, `npm install --prefix backend`, and `npm install --prefix frontend`.
+3. Install all dependencies with `npm run setup:all`, or install the root, backend, and frontend dependencies separately.
 4. Run backend utility tests with `npm test --prefix backend`.
 5. Start both apps with `npm run dev` from the repository root.
 6. Frontend: http://localhost:5173 · API health: http://localhost:5000/api/v1/health
