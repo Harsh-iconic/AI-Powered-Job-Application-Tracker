@@ -20,6 +20,17 @@ Private routes accept the httpOnly `token` cookie or an `Authorization: Bearer <
 { "email": "alex@example.com", "password": "your-password" }
 ```
 
+### Current user and logout
+- `GET /auth/me`: return the authenticated user's profile.
+- `POST /auth/logout`: clear the session cookie.
+
+### Update profile
+`PUT /auth/profile`
+
+```json
+{ "name": "Alex", "avatar": "https://example.com/avatar.png" }
+```
+
 ### Change password
 `PUT /auth/password`
 
@@ -50,6 +61,10 @@ Changing a password increments the user's session version and invalidates previo
 
 The maximum page size is 50. Supported statuses: Wishlist, Applied, Assessment, Interview, Offer, Rejected.
 
+### Dashboard and upcoming interviews
+- `GET /jobs/stats`: status totals, offer rate, and upcoming interview / follow-up counts.
+- `GET /jobs/upcoming-interviews`: return the next scheduled interview dates.
+
 ### Follow-up reminders
 
 `GET /jobs/follow-ups` returns the next scheduled follow-up dates for the authenticated user.
@@ -68,9 +83,11 @@ Returns the authenticated user's applications as a CSV attachment. Supports the 
 
 - `POST /resumes/upload`: multipart form field `resume`, PDF only, maximum 5 MB. Invalid file signatures return 400, unreadable PDFs return 422, and oversized uploads return 413.
 - `GET /resumes`: list the user's uploaded resumes.
+- `DELETE /resumes/:id`: delete a resume and its related AI analyses.
 - `POST /ai/resume/analyze`: JSON body `{ "resumeId": "<id>" }`.
 - `POST /ai/job/match`: JSON body `{ "resumeId": "<id>", "jobId": "<id>" }`.
 - `POST /ai/interview/generate`: JSON body `{ "jobId": "<id>" }`.
+- `GET /ai/history`: list saved resume and job-match analyses.
 - `GET /ai/interviews`: list saved interview practice sessions.
 - `PATCH /ai/interviews/:id`: update `scheduledAt` and/or `notes`.
 - `DELETE /ai/interviews/:id`: delete a saved practice session.
