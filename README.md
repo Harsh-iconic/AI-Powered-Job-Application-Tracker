@@ -8,7 +8,8 @@ A MERN-stack job application tracker with AI-assisted resume feedback, resume-to
 - PDF resume upload and text extraction.
 - AI resume feedback and job-description matching.
 - Role-specific interview question generation, saved practice sessions, and analysis history.
-- Account security settings for changing passwords.\n- Responsive React dashboard with charts.
+- Account security settings for changing passwords.
+- Responsive React dashboard with charts.
 
 ## Requirements
 Node.js 18+, MongoDB, and a Gemini API key for AI features. Cloudinary is optional; without it, resume files are processed in memory and extracted text is stored in MongoDB.
