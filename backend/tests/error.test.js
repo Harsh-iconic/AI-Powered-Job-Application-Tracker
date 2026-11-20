@@ -3,3 +3,6 @@ function response(){return{statusCode:200,status(code){this.statusCode=code;retu
 test('maps duplicate key errors to conflict',()=>{const res=response();errorHandler({code:11000},{},res,()=>{});assert.equal(res.statusCode,409);});
 test('maps invalid Mongo identifiers to bad request',()=>{const res=response();errorHandler({name:'CastError',message:'bad id'},{},res,()=>{});assert.equal(res.statusCode,400);});
 test('hides internal error messages in production',()=>{const previous=process.env.NODE_ENV;process.env.NODE_ENV='production';try{const res=response();errorHandler(new Error('database password leaked'),{},res,()=>{});assert.equal(res.statusCode,500);assert.equal(res.payload.message,'Internal server error');}finally{if(previous===undefined)delete process.env.NODE_ENV;else process.env.NODE_ENV=previous;}});
+
+test('maps oversized resume uploads to payload too large',()=>{const res=response();const error=Object.assign(new Error('File too large'),{name:'MulterError',code:'LIMIT_FILE_SIZE'});errorHandler(error,{},res,()=>{});assert.equal(res.statusCode,413);});
+test('maps unsupported resume file errors to bad request',()=>{const res=response();const error=Object.assign(new Error('Only PDF resume files are allowed'),{statusCode:400});errorHandler(error,{},res,()=>{});assert.equal(res.statusCode,400);});
