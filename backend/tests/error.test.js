@@ -1,0 +1,5 @@
+const test=require('node:test');const assert=require('node:assert/strict');const{errorHandler}=require('../middleware/error');
+function response(){return{statusCode:200,status(code){this.statusCode=code;return this;},json(payload){this.payload=payload;return this;}};}
+test('maps duplicate key errors to conflict',()=>{const res=response();errorHandler({code:11000},{},res,()=>{});assert.equal(res.statusCode,409);});
+test('maps invalid Mongo identifiers to bad request',()=>{const res=response();errorHandler({name:'CastError',message:'bad id'},{},res,()=>{});assert.equal(res.statusCode,400);});
+test('hides internal error messages in production',()=>{const previous=process.env.NODE_ENV;process.env.NODE_ENV='production';try{const res=response();errorHandler(new Error('database password leaked'),{},res,()=>{});assert.equal(res.statusCode,500);assert.equal(res.payload.message,'Internal server error');}finally{if(previous===undefined)delete process.env.NODE_ENV;else process.env.NODE_ENV=previous;}});
