@@ -33,7 +33,8 @@ Base path `/api/v1`.
 | GET/POST | `/jobs` | List/create applications |
 | GET/PUT/DELETE | `/jobs/:id` | Read/update/delete application |
 | PATCH | `/jobs/:id/status` | Move application stage and record its history |
-| GET | `/jobs/stats` | Dashboard statistics |
+| GET | `/jobs/stats` | Dashboard statistics and upcoming interview count |
+| GET | `/jobs/upcoming-interviews` | List the next scheduled interviews |
 | GET | `/jobs/export/csv` | Export your applications to CSV |
 | POST | `/resumes/upload` | Upload PDF resume |
 | GET | `/resumes` | List resumes |
