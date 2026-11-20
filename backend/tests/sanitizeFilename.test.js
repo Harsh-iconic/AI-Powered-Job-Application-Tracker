@@ -16,3 +16,5 @@ test('limits stored filenames to 255 characters',()=>{
 });
 
 test('removes control characters from filenames',()=>{assert.equal(sanitizeFilename('resume\u0000\u0007.pdf'),'resume.pdf');});
+
+test('preserves ordinary Unicode filename characters',()=>{assert.equal(sanitizeFilename('résumé-日本語.pdf'),'résumé-日本語.pdf');});
