@@ -1,6 +1,6 @@
 # API reference
 
-Base URL: `http://localhost:5000/api/v1`
+Base URL: `http://localhost:5000/api/v1`. `GET /health` reports API and MongoDB connectivity.
 
 Private routes accept the httpOnly `token` cookie or an `Authorization: Bearer <token>` header. JSON requests should send `Content-Type: application/json`.
 
@@ -66,7 +66,7 @@ Returns the authenticated user's applications as a CSV attachment. Supports the 
 
 ## Resumes and AI
 
-- `POST /resumes/upload`: multipart form field `resume`, PDF only, maximum 5 MB.
+- `POST /resumes/upload`: multipart form field `resume`, PDF only, maximum 5 MB. Invalid file signatures return 400, unreadable PDFs return 422, and oversized uploads return 413.
 - `GET /resumes`: list the user's uploaded resumes.
 - `POST /ai/resume/analyze`: JSON body `{ "resumeId": "<id>" }`.
 - `POST /ai/job/match`: JSON body `{ "resumeId": "<id>", "jobId": "<id>" }`.
